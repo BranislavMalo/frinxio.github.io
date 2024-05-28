@@ -772,9 +772,29 @@ Parameters related to installing gNMI nodes with uniconfig-native support:
   - Uninstall the device and reinstall it.
   - Call `sync-from-network` to sync the data from the device.
 
-!!!
-An important install parameter is `gnmi-topology:schema-cache-directory: <folder-name>`. It specifies a folder name in the cache directory with the YANG schemas needed to install a device. 
-!!!
+
+An important install parameter is `gnmi-topology:schema-cache-directory: <folder-name>`. It specifies a folder name 
+in the cache directory with the YANG schemas needed to install a device. If this parameter is not specified, 
+user can create default-capability.json file inside of mentioned cache directory and UniConfig will dynamically 
+resolve correct cache directory for given node. This json file must have all capabilities that device supports.
+Format of default-capability.json: 
+```json
+[
+  {
+    "name": "nokia-conf",
+    "organization": "Nokia",
+    "version": "22.10.R7"
+  },
+  {
+    "name": "nokia-state",
+    "organization": "Nokia"
+  },
+  {
+    "name": "nokia-li-state"
+  }
+]
+```
+
 
 ### Update paths
 

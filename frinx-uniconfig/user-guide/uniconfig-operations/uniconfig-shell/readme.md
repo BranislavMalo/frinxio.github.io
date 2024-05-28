@@ -177,9 +177,9 @@ The following commands are used to unhide and hide attributes in application
 properties:
 
 * `unhide-get` is used to unhide an attribute hidden in application properties
-  for read purposes.
+  for read purposes (restconf.schema-filters.hidden-data-on-read-by-extensions).
 * `unhide-set` is used to unhide an attribute hidden in application properties
-  for write purposes.
+  for write purposes (restconf.schema-filters.ignored-data-on-write-by-extensions).
 * `hide-get` is used to hide attributes that were unhidden with `unhide-get`.
 * `hide-set` is used to hide attributes that were unhidden with `unhide-set`.
 
@@ -188,6 +188,10 @@ contains the `unhide` query parameter. In the following example, the `unhide`
 parameter is set to `all`:
 
   http://localhost:8181/rests/data/network-topology:network-topology/topology=uniconfig/node=vnf21/configuration?unhide=all
+
+This is also available for callbacks. Request and set operations for callbacks uses
+`restconf.schema-filters.ignored-data-on-write-by-extensions` and show operations uses
+`restconf.schema-filters.hidden-data-on-read-by-extensions`.
 
 The command also gives confirmation that the attribute was added to or removed
 from the unhidden list.
@@ -226,6 +230,110 @@ tailf:hidden full
 When used with the parameter `all`, the unhide operation applies to all
 parameters defined in application properties for read or write purposes.
 !!!
+
+### Examples
+
+**Example** - Attempt to show hidden callbacks field details with unhide
+
+```Show hidden callbacks field details with unhide
+uc>unhide-get deprecated 
+Attribute tailf:hidden deprecated was added to unhidden get list.
+uc>configuration-mode
+Transaction with id: fe30f909-82bd-4037-b262-a5e147034ab6 was successfully created
+uc(config)#show callbacks vnms system details 
+{
+  "path": "/vnms/system/details",
+  "headers": {
+    "host": "127.0.0.1:8443",
+    "user-agent": "Java-http-client/21.0.1",
+    "accept": "application/json",
+    "authorization": "Bearer abcdefghijklmn",
+    "content-type": "application/json"
+  },
+  "method": "GET",
+  "body": "",
+  "fresh": false,
+  "hostname": "127.0.0.1",
+  "ip": "::1",
+  "ips": [],
+  "protocol": "https",
+  "query": {},
+  "subdomains": [],
+  "xhr": false,
+  "os": {
+    "hostname": "f8278c7a721b"
+  },
+  "connection": {
+    "servername": false
+  },
+  "clientCertificate": {}
+}
+uc(config)#
+```
+
+**Example** - Attempt to show hidden callbacks field details without unhide
+
+```Show hidden callbacks field details without unhide
+uc>hide-get deprecated 
+Attribute tailf:hidden deprecated was removed from unhidden get list.
+uc>configuration-mode
+Transaction with id: fe30f909-82bd-4037-b262-a5e147034ab6 was successfully created
+uc(config)#show callbacks vnms system details
+Unknown arguments: details
+uc(config)#
+```
+
+**Example** - Attempt to set hidden callbacks field reset-password with unhide
+
+```Set hidden callbacks field reset-password with unhide
+uc>unhide-set full
+Attribute tailf:hidden full was added to unhidden set list.
+uc>configuration-mode 
+Transaction with id: fe30f909-82bd-4037-b262-a5e147034ab6 was successfully created
+uc(config)#set callbacks vnms system reset-password 
+Failed to send request to remote server; Body is not specified!
+uc(config)#
+
+```
+
+**Example** - Attempt to set hidden callbacks field reset-password without unhide
+
+```Set hidden callbacks field reset-password without unhide
+uc>hide-set full 
+Attribute tailf:hidden full was removed from unhidden set list.
+uc>configuration-mode 
+Transaction with id: fe30f909-82bd-4037-b262-a5e147034ab6 was successfully created
+uc(config)#set callbacks vnms reset-password
+Unknown arguments: reset-password
+uc(config)#
+
+```
+
+**Example** - Attempt to request hidden callbacks field unlock-user with unhide
+
+```Request hidden callbacks field unlock-user with unhide
+uc>unhide-set full
+Attribute tailf:hidden full was added to unhidden set list.
+uc>configuration-mode 
+Transaction with id: fe30f909-82bd-4037-b262-a5e147034ab6 was successfully created
+uc(config)#request callbacks vnms system unlock-user 
+Request body is needed
+uc(config)#
+
+```
+
+**Example** - Attempt to request hidden callbacks field unlock-user without unhide
+
+```Request hidden callbacks field unlock-user without unhide
+uc>hide-set full 
+Attribute tailf:hidden full was removed from unhidden set list.
+uc>configuration-mode
+Transaction with id: fe30f909-82bd-4037-b262-a5e147034ab6 was successfully created
+uc(config)#request callbacks vnms system unlock-user
+Unknown arguments: unlock-user
+uc(config)#
+
+```
 
 ## Configuration mode
 

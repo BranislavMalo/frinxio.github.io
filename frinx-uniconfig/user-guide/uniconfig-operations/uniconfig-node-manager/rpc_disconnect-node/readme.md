@@ -1,7 +1,7 @@
 # RPC disconnect-node
 
-This RPC is similar to the **unmount-node RPC** in that it closes a connection
-to a device.
+This RPC closes connection to a device. If a node is associated with multiple
+transactions, it will be removed from all of them.
 
 !!!
 Note that the transaction used in this RPC is created internally, so that no
@@ -10,20 +10,23 @@ user-created transactions are used.
 
 The **disconnect-node RPC** also supports disconnecting stream nodes.
 
-!!! Note that the **disconnect-node RPC** only works on local Uniconfig nodes in
-a cluster. !!!
+!!!
+Note that the **disconnect-node RPC** only works on local Uniconfig nodes in
+a cluster.
+!!!
 
 ## RPC parameters
 
-- `node-id` (mandatory) - ID of stream node. Consists of a device node and
-stream name (`<device node>_<stream name>`, for example `R1_NETCONF`).
+- `node-id` (mandatory) - ID of a node. In case of a stream node, the node
+  consists of a device node and a stream name (`<device node>_<stream name>`,
+  for example `R1_NETCONF`).
 
 ## UniConfig shell
 
 The **disconnect-node RPC** is also included in 
 [UniConfig shell](https://docs.frinx.io/frinx-uniconfig/user-guide/uniconfig-operations/uniconfig-shell/). 
-As it takes `node-id` as input, the shell only suggests nodes user that are
-relevant to this RPC (for example, connected nodes).
+As it takes `node-id` as input, the shell only suggests nodes that are relevant
+to this RPC (nodes that are already connected).
 
 ## RPC examples
 

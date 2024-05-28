@@ -1,8 +1,8 @@
 # RPC connect-node
 
-This RPC is similar to the **mount-node RPC** in that it creates a connection to
-a device that is already installed. The connection is created outside of a
-transaction, so that the connection stays up even without active transactions.
+This RPC creates a connection to a device that is already installed.
+The connection is created outside of a transaction,
+so that the connection stays up even without active transactions.
 
 !!!
 Note that the transaction used in this RPC is created internally, so that no
@@ -20,8 +20,9 @@ The **connect-node RPC** only works on local Uniconfig nodes in a cluster.
 
 ## RPC parameters
 
-- `node-id` (mandatory) - ID of stream node. Consists of a device node and
-  stream name (`<device node>_<stream name>`, for example `R1_NETCONF`).
+- `node-id` (mandatory) - ID of a node. In case of a stream node, the node
+  consists of a device node and a stream name (`<device node>_<stream name>`,
+  for example `R1_NETCONF`).
 - `max-connection-attempts` - Maximum number of connection attempts. The default
   value is 1.
 - `between-attempts-timeout` - Timeout between connection attempts in seconds.
@@ -32,8 +33,7 @@ The **connect-node RPC** only works on local Uniconfig nodes in a cluster.
 The **connect-node RPC** is also included in
 [UniConfig shell](https://docs.frinx.io/frinx-uniconfig/user-guide/uniconfig-operations/uniconfig-shell/).
 As it takes `node-id` as input, the shell only suggests nodes that are relevant
-to this RPC (for example, nodes that are installed in UniConfig but are not yet
-connected).
+to this RPC (nodes that are installed in UniConfig but are not yet connected).
 
 ## RPC examples
 

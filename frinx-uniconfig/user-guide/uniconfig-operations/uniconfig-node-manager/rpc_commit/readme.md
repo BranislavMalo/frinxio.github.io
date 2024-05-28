@@ -23,10 +23,10 @@ The configuration of nodes consists of the following phases:
 6. **Rollback**: Restore the configuration to its previous state if the
    configuration process fails. When configuring multiple devices in a single
    transaction and the process fails on one particular device, the rollback
-   procedure is applied to all touched devices. This is done with the auto
+   procedure is applied to **all touched devices**. This is done with the auto
    rollback procedure, which is by enabled by default. The procedure can be
-   disabled with the `do-rollback` flag in the RPC input, in which case only
-   failed devices are rolled back. 
+   disabled with the `do-rollback` flag in the RPC input, in which case **only
+   failed devices are rolled back**. 
 
 !!!
 The `skip-unreachable-nodes` flag controls whether unreachable nodes are

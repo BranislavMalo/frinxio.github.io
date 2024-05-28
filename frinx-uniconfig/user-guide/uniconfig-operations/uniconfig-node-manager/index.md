@@ -19,6 +19,7 @@ See below for additional information on individual RPCs:
 - [RPC commit](../uniconfig-node-manager/rpc_commit)
 - [RPC compare-config](../uniconfig-node-manager/rpc_compare-config)
 - [RPC get-installed-nodes](../uniconfig-node-manager/uniconfig_get_installed_devices)
+- [RPC check-nodes-connection](../uniconfig-node-manager/uniconfig_check_nodes_connection)
 - [RPC health](../uniconfig-node-manager/rpc_health)
 - [RPC install-multiple-nodes](../uniconfig-node-manager/uniconfig_install_multiple_nodes)
 - [RPC is-in-sync](../uniconfig-node-manager/rpc_is-in-sync)
